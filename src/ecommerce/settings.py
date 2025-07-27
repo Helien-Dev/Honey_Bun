@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # My apps
+    'pages',
+    'accounts',
+    'catalog',
+    'helpers',
+    'core',
+
     # Third-party apps
     'django_components',
 ]
