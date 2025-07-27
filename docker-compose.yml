@@ -1,0 +1,51 @@
+services:
+  honey_bun:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: django_ecommerce
+    user: "1001"
+    working_dir: /code/src
+    command: ./scripts/initializer.sh
+    volumes:
+      - ./src:/code/src
+    develop:
+      watch:
+        - path: .
+          action: sync
+          target: /code/src/
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+  
+  nginx:
+    image: nginx:stable
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - static_volume:/static
+      - media_volume:/media
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: on-failure
+    depends_on:
+      - honey_bun
+
+  db:
+    image: postgres:17
+    container_name: postgresdbs
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  static_volume:
+  media_volume:
+  postgres_data:
