@@ -1,10 +1,10 @@
 {
-  "name": "django-ecommerce",
+  "name": "honey_bun",
   "version": "1.0.0",
-  "description": "Django ecommerce project with Tailwind CSS and hot reload",
+  "description": "Honey Bun ecommerce, made with django and tailwindcss",
   "scripts": {
-    "dev": "concurrently \"npm run watch-css\" \"python src/manage.py runserver\"",
-    "watch-css": "tailwindcss -i ./src/assets/input.css -o ./src/static/css/output.css --watch",
+    "dev": "concurrently \"npm run watch\" \"python src/manage.py runserver\"",
+    "watch": "tailwindcss -i ./src/assets/input.css -o ./src/static/css/output.css --watch",
     "build-css": "tailwindcss -i ./src/assets/input.css -o ./src/static/css/output.css",
     "build-css-prod": "tailwindcss -i ./src/assets/input.css -o ./src/static/css/output.css --minify"
   },
