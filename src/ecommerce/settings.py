@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 # django-browser-reload
 
 # Configuración en settings.py
-import os
 import sys
 from pathlib import Path
 from decouple import config
