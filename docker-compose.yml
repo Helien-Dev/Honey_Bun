@@ -5,15 +5,15 @@ services:
       dockerfile: dockerfile
     container_name: django_ecommerce
     user: "1001"
-    working_dir: /code/src
-    command: ./scripts/initializer.sh
+    working_dir: /code/
+    command: ./src/scripts/initializer.sh
     volumes:
       - ./src:/code/src
     develop:
       watch:
         - path: .
           action: sync
-          target: /code/src/
+          target: /code/
     ports:
       - "8000:8000"
     env_file:

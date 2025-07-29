@@ -4,8 +4,13 @@ src/static/admin/
 src/static/account/
 src/static/allauth_ui/
 src/static/slippers/
-
+src/staticfiles/
 uv.lock
+
+# Nodejs
+node_modules/
+package-lock.json
+package.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
