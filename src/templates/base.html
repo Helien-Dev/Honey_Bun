@@ -6,15 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mi Ecommerce{% endblock %}</title>
-    
-    <!-- Tailwind CSS -->
     <link href="{% static 'css/output.css' %}" rel="stylesheet">
-    
     {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-gray-100">
-    <header class="bg-white shadow-md">
-        <!-- Tu header aquí -->
+<body>
+    <header>
     </header>
 
     <main>
@@ -22,13 +18,9 @@
         {% endblock %}
     </main>
 
-    <footer class="bg-gray-800 text-white text-3xl">
-        <p>Probando el footer</p>
+    <footer>
     </footer>
-
     {% block extra_js %}{% endblock %}
-    
-    <!-- ⚠️ IMPORTANTE: Agregar esto al final del body -->
     {% django_browser_reload_script %}
 </body>
 </html>
