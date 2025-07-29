@@ -1,17 +1,34 @@
 {% load static %}
+{% load django_browser_reload %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Ecommerce{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
     <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    
     {% block extra_css %}{% endblock %}
-    <title>Document</title>
 </head>
-<body>
-    <h1 class="">Loco</h1>
-    {% block content %}
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <!-- Tu header aquí -->
+    </header>
 
-    {% endblock content %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white text-3xl">
+        <p>Probando el footer</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+    
+    <!-- ⚠️ IMPORTANTE: Agregar esto al final del body -->
+    {% django_browser_reload_script %}
 </body>
 </html>

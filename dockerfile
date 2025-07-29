@@ -21,11 +21,13 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+
+
 RUN apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt package.json /code/
+COPY requirements.txt package.json tailwind.config.js /code/
     
 RUN pip install --upgrade pip \
     && pip install gunicorn \ 
@@ -33,8 +35,9 @@ RUN pip install --upgrade pip \
 
 WORKDIR /code/
 RUN npm install --omit=dev
+RUN npm install concurrently --save-dev
 USER code
-COPY --chown=code:code requirements.txt package.json /code/
+COPY --chown=code:code requirements.txt package.json tailwind.config.js  /code/
 
 RUN pip install --upgrade pip \
     && pip install gunicorn django-browser-reload \

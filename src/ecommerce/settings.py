@@ -9,6 +9,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+# Agregar a tu requirements.txt
+# django-browser-reload
+
+# Configuración en settings.py
 import os
 import sys
 from pathlib import Path
@@ -17,22 +21,17 @@ from django_components import ComponentsSettings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# sys.path.append(str(BASE_DIR / "src"))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+sys.path.append(str(BASE_DIR / "src"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('DJANGO_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DJANGO_DEBUG')
+DEBUG = config('DJANGO_DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     # My apps
     'pages',
     'accounts',
@@ -59,6 +59,10 @@ INSTALLED_APPS = [
     'slippers',
 ]
 
+# Agregar django_browser_reload solo en desarrollo
+if DEBUG:
+    INSTALLED_APPS.append('django_browser_reload')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,9 +71,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
     "allauth.account.middleware.AccountMiddleware",
 ]
+
+# Agregar middleware de browser-reload solo en desarrollo
+if DEBUG:
+    MIDDLEWARE.append('django_browser_reload.middleware.BrowserReloadMiddleware')
 
 ROOT_URLCONF = 'ecommerce.urls'
 
@@ -86,11 +93,8 @@ TEMPLATES = [
             ],
             'loaders':[(
                 'django.template.loaders.cached.Loader', [
-                    # Default Django loader
                     'django.template.loaders.filesystem.Loader',
-                    # Including this is the same as APP_DIRS=True
                     'django.template.loaders.app_directories.Loader',
-                    # Components loader
                     'django_components.template_loader.Loader',
                 ]
             )],
@@ -100,10 +104,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -119,7 +120,6 @@ DATABASES = {
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-    ...
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -133,8 +133,6 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -150,38 +148,57 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'es-es'
 TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     "django_components.finders.ComponentsFileSystemFinder",
 ]
 
-# Static files directories
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR /  "static",
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # For production
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-# Components configuration
 COMPONENTS = ComponentsSettings(
     dirs=[BASE_DIR / "widgets"],
 )
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
+# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de django-browser-reload (solo en desarrollo)
+if DEBUG:
+    # Archivos y directorios que quieres que disparen el reload
+    BROWSER_RELOAD_WATCH_DIRS = [
+        BASE_DIR / "templates",
+        BASE_DIR / "src",
+        BASE_DIR / "widgets",
+    ]
+    
+    # Patrones de archivos a observar
+    BROWSER_RELOAD_WATCH_FILES = [
+        BASE_DIR / "src" / "static" / "css" / "output.css",  # Tu CSS de Tailwind
+    ]
+    
+    # Opcional: excluir ciertos archivos
+    BROWSER_RELOAD_IGNORE_PATHS = [
+        "*.pyc",
+        "*.pyo",
+        "*~",
+        "*.swp",
+        "*.swo",
+        "*/.git/*",
+        "*/node_modules/*",
+        "*/__pycache__/*",
+    ]

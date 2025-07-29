@@ -10,7 +10,7 @@ fi
 echo "Iniciando servidor de desarrollo y Tailwind CLI..."
 
 # Ejecuta tailwind en segundo plano
-npx tailwindcss -i ./src/assets/input.css -o ./src/static/css/output.css --watch &
+npm run watch-css
 TAILWIND_PID=$!
 
 # Ejecuta Django (puedes cambiar por gunicorn si es prod)

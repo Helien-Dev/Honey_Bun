@@ -4,6 +4,7 @@ asgiref==3.9.1
     # via
     #   django
     #   django-allauth
+    #   django-browser-reload
 certifi==2025.7.14
     # via requests
 cffi==1.17.1
@@ -17,8 +18,11 @@ django==5.2.4
     #   honey-bun (pyproject.toml)
     #   django-allauth
     #   django-appconf
+    #   django-browser-reload
     #   django-components
     #   django-compressor
+    #   django-debug-toolbar
+    #   django-extensions
     #   slippers
 django-allauth==65.10.0
     # via honey-bun (pyproject.toml)
@@ -26,9 +30,15 @@ django-allauth-ui==1.8.1
     # via honey-bun (pyproject.toml)
 django-appconf==1.1.0
     # via django-compressor
+django-browser-reload==1.18.0
+    # via honey-bun (pyproject.toml)
 django-components==0.141.2
     # via honey-bun (pyproject.toml)
 django-compressor==4.5.1
+    # via honey-bun (pyproject.toml)
+django-debug-toolbar==6.0.0
+    # via honey-bun (pyproject.toml)
+django-extensions==4.1
     # via honey-bun (pyproject.toml)
 django-widget-tweaks==1.5.0
     # via
@@ -69,7 +79,9 @@ slippers==0.6.2
     #   honey-bun (pyproject.toml)
     #   django-allauth-ui
 sqlparse==0.5.3
-    # via django
+    # via
+    #   django
+    #   django-debug-toolbar
 typeguard==2.13.3
     # via slippers
 typing-extensions==4.14.1
