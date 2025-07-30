@@ -1,3 +1,57 @@
+:root {
+    --light-accent-color: #FCC862;
+    --light-background-color: #FEFFEA;
+    --light-second-color: #424242;
+
+    --font-display-large-size: 65px;
+    --font-display-large-line-height: 64px;
+    --font-display-large-weight: bold;
+    --font-display-large-color: black;
+    --font-display-large-letter-spacing: -0.025em;
+
+    --font-headline-large-size: 32px;
+    --font-headline-large-weight: 600;
+    --font-headline-large-color: black;
+    --font-headline-large-line-height: 30px;
+
+    --font-body-large-size: 16px;
+    --font-body-large-weight: bold;
+    --font-body-large-line-height: 24px;
+    --font-body-large-letter-spacing: 0.05em;
+}
+
 body {
     font-family: "Onest", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.font-display-large {
+    font-size: var(--font-display-large-size);
+    font-weight: var(--font-display-large-weight);
+    line-height: var(--font-display-large-line-height);
+    letter-spacing: var(--font-display-large-letter-spacing);
+    color: var(--font-display-large-color);
+}
+
+.font-headline-large {
+    font-size: var(--font-headline-large-size);
+    font-weight: var(--font-headline-large-weight);
+    line-height: var(--font-headline-large-line-height);
+    color: var(--font-headline-large-color);
+}
+
+.font-body-large-bold {
+    font-size: var(--font-body-large-size);
+    font-weight: var(--font-body-large-weight);
+    line-height: var(--font-body-large-line-height);
+    letter-spacing: var(--font-body-large-letter-spacing);
+}
+
+.font-body-large {
+    font-size: var(--font-body-large-size);
+    line-height: var(--font-body-large-line-height);
+    letter-spacing: var(--font-body-large-letter-spacing);
 }
