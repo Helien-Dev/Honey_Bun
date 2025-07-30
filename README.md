@@ -9,7 +9,7 @@ Honey_Bun es una base para proyectos web en Django 5, preparada para desarrollo 
 │   ├── static/              # Archivos estáticos globales
 │   └── templates/           # Plantillas globales
 ├── nginx/
-│   ├── default.conf/               # Configuración de Nginx
+│   ├── default.conf/        # Configuración de Nginx
 ├── .env                     # Variables de entorno
 ├── docker-compose.yml       # Orquestación de servicios Docker
 ├── requirements.txt         # Dependencias de Python
