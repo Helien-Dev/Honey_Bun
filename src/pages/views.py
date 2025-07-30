@@ -13,6 +13,14 @@ def home_view(request):
     """
     Renders the home page.
     """
-    context = { }
+    context = {
+        'title': 'Home',
+        'description': 'description',
+        'keywords': 'keywords',
+        'og_title': 'og:title',
+        'og_description': 'og:description',
+        'og_type': 'og:type',
+        'og_image': 'og:image'
+    }
 
     return render(request, 'views/home.html', context)
