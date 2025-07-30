@@ -5,6 +5,7 @@ This module contains view functions for rendering static pages in the applicatio
 
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
+from catalog.models import Product
 
 User = get_user_model()
 
@@ -13,7 +14,8 @@ def home_view(request):
     """
     Renders the home page.
     """
-
+    products = Product.objects.all().order_by('?')[:2]
+    single_product = Product.objects.all().order_by('?')[:1]
     user = request.user
 
     context = {
@@ -24,7 +26,9 @@ def home_view(request):
         'og_description': 'og:description',
         'og_type': 'og:type',
         'og_image': 'og:image',
-        'user': user
+        'user': user,
+        'products': products,
+        'single_product': single_product,
     }
 
     return render(request, 'views/home.html', context)

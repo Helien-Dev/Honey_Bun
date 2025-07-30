@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
+{% load component_tags %}
 
 <section class="flex">
   <div class="max-w-[780px] relative">
@@ -13,9 +14,16 @@
       excelente y disciplinado como nuestras queridas abejas!
     </p>
   </div>
-  <div class="">
-    <img src="" alt="">
+  <div class="HoneyBee">
+    <img src="{% static 'images/HoneyBee.png'  %}" alt="Main Honey Bee">
   </div>
+</section>
+
+<section>
+
+  {% component 'small_card' model_instance=model_instance %}{% endcomponent %}
+  {% component 'recommendation_card' %}{% endcomponent %}
+
 </section>
 
 <section class="text-center max-w-full pt-20">
