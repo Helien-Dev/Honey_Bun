@@ -4,10 +4,15 @@ This module contains view functions for rendering static pages in the applicatio
 """
 
 from django.shortcuts import render
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Create your views here.
 def home_view(request):
     """
     Renders the home page.
     """
-    return render(request, 'pages/home.html', {})
+    context = { }
+
+    return render(request, 'pages/home.html', context)
