@@ -1,6 +1,7 @@
 {% load static %}
 {% load django_browser_reload %}
 {% load component_tags %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,7 +31,7 @@
         {% component "navbar" %}{% endcomponent  %}
     </header>
 
-    <main>
+    <main class="py-[40px] px-[120px]">
         {% block content %}
         {% endblock %}
     </main>

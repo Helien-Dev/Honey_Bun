@@ -13,6 +13,9 @@ def home_view(request):
     """
     Renders the home page.
     """
+
+    user = request.user
+
     context = {
         'title': 'Home',
         'description': 'description',
@@ -20,7 +23,8 @@ def home_view(request):
         'og_title': 'og:title',
         'og_description': 'og:description',
         'og_type': 'og:type',
-        'og_image': 'og:image'
+        'og_image': 'og:image',
+        'user': user
     }
 
     return render(request, 'views/home.html', context)
