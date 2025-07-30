@@ -15,4 +15,4 @@ def home_view(request):
     """
     context = { }
 
-    return render(request, 'pages/home.html', context)
+    return render(request, 'views/home.html', context)

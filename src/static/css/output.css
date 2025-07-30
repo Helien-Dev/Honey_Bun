@@ -745,16 +745,28 @@ video {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
 }
 
-.gap-2 {
-  gap: 0.5rem;
+.gap-20 {
+  gap: 5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
@@ -789,10 +801,6 @@ video {
   border-width: 1px;
 }
 
-.border-\[1px\] {
-  border-width: 1px;
-}
-
 .border-solid {
   border-style: solid;
 }
@@ -810,19 +818,9 @@ video {
   background-color: rgb(0 0 0 / 0.9);
 }
 
-.bg-red-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity, 1));
-}
-
 .bg-zinc-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(39 39 42 / var(--tw-bg-opacity, 1));
-}
-
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
 }
 
 .p-4 {
@@ -834,19 +832,19 @@ video {
   padding-right: 1rem;
 }
 
+.px-\[120px\] {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-.px-\[10px\] {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.px-\[120px\] {
-  padding-left: 120px;
-  padding-right: 120px;
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .py-\[10px\] {
@@ -862,6 +860,10 @@ video {
   padding-right: 2.5rem;
 }
 
+.pt-7 {
+  padding-top: 1.75rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -875,13 +877,22 @@ video {
   line-height: 2rem;
 }
 
+.text-\[14px\] {
+  font-size: 14px;
+}
+
+.text-\[22px\] {
+  font-size: 22px;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-\[14px\] {
-  font-size: 14px;
 }
 
 .font-light {
@@ -898,6 +909,20 @@ video {
 
 .lowercase {
   text-transform: lowercase;
+}
+
+.leading-\[28px\] {
+  line-height: 28px;
+}
+
+.text-\[\#424242\] {
+  --tw-text-opacity: 1;
+  color: rgb(66 66 66 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#FCC862\] {
+  --tw-text-opacity: 1;
+  color: rgb(252 200 98 / var(--tw-text-opacity, 1));
 }
 
 .text-indigo-400 {
@@ -933,16 +958,6 @@ video {
 .text-zinc-400 {
   --tw-text-opacity: 1;
   color: rgb(161 161 170 / var(--tw-text-opacity, 1));
-}
-
-.text-\[\#424242\] {
-  --tw-text-opacity: 1;
-  color: rgb(66 66 66 / var(--tw-text-opacity, 1));
-}
-
-.text-\[\#FCC862\] {
-  --tw-text-opacity: 1;
-  color: rgb(252 200 98 / var(--tw-text-opacity, 1));
 }
 
 .shadow {
