@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 # django-browser-reload
 
 # Configuración en settings.py
+import os
 import sys
 from pathlib import Path
 from decouple import config
@@ -206,25 +207,35 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+# django-components
 COMPONENTS = ComponentsSettings(
-    dirs=[BASE_DIR / "widgets"],
+    dirs=[
+        BASE_DIR / "widgets",
+        BASE_DIR / "templates" / "components",
+    ],
+    reload_on_file_change=True,
+    autodiscover=True,
 )
-
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de django-browser-reload (solo en desarrollo)
 if DEBUG:
-    # Archivos y directorios que quieres que disparen el reload
     BROWSER_RELOAD_WATCH_DIRS = [
+        BASE_DIR,
         BASE_DIR / "templates",
-        BASE_DIR / "src",
+        BASE_DIR / "templates" / "components",
         BASE_DIR / "widgets",
     ]
 
-    # Patrones de archivos a observar
+    # Archivos específicos para observar cambios
     BROWSER_RELOAD_WATCH_FILES = [
-        BASE_DIR / "src" / "static" / "css" / "output.css",  # Tu CSS de Tailwind
+        BASE_DIR / "src" / "static" / "css" / "output.css",
+    ]
+
+    BROWSER_RELOAD_INCLUDE = [
+        "*.html", 
+        "*.py"
     ]
 
     # Opcional: excluir ciertos archivos
@@ -238,3 +249,6 @@ if DEBUG:
         "*/node_modules/*",
         "*/__pycache__/*",
     ]
+
+    BROWSER_RELOAD_ENABLED = True
+    BROWSER_RELOAD_AUTO_RELOAD = True
