@@ -55,3 +55,57 @@ body {
     line-height: var(--font-body-large-line-height);
     letter-spacing: var(--font-body-large-letter-spacing);
 }
+
+.Bee-Polygon img {
+    position: absolute;
+    width: 1080px;
+    height: 1080px;
+    z-index: -1;
+    left: 896px;
+    top: -80px;
+    text-align: center;
+}
+
+.container_title {
+    display: grid;
+    grid-template-columns: auto max-content auto;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+}
+
+.line_title {
+    height: 6px;
+    background-color: #FCC862;
+}
+
+.line_title:first-child {
+    width: 50px;
+}
+
+.line_title:last-child {
+    width: 50px;
+}
+
+
+.text {
+    white-space: nowrap;
+    padding: 0 0px;
+}
+
+@media screen and (max-width: 1380px) {
+    .Bee-Polygon img {
+        isolation: auto;
+        position: absolute;
+        width: 800px;
+        height: 700px;
+        left: 650px;
+        top: 80px;
+        text-align: center;
+    }
+}
