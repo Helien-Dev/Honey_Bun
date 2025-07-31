@@ -57,3 +57,6 @@ def categories_view(request):
 
 def offers_view(request):
     return render(request, 'views/offers.html', {})
+
+def shop_view(request):
+    return render(request, 'views/shops.html', {})
