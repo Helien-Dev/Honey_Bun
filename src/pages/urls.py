@@ -6,6 +6,7 @@ from .views import (
     categories_view,
     offers_view,
     shop_view,
+    special_offers_view,
 )
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path('search/', search_view, name='search'),
     path('categories/', categories_view, name='categories'),
     path('offers/', offers_view, name='offers'),
-    path('shop/', offers_view, name='shop'),
+    path('special_offers/', special_offers_view, name='special_offers'),
+    path('shop/', shop_view, name='shop'),
 ]

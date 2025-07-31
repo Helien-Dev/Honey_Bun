@@ -53,10 +53,25 @@ def search_view(request):
     return render(request, 'components/controls/search.html', context)
 
 def categories_view(request):
+    """
+    Categories view
+    """
     return render(request, 'views/categories.html', {})
 
 def offers_view(request):
+    """
+    Offers view
+    """
     return render(request, 'views/offers.html', {})
 
 def shop_view(request):
+    """
+    Shop view
+    """
     return render(request, 'views/shops.html', {})
+
+def special_offers_view(request):
+    """
+    Special offers view
+    """
+    return render(request, 'views/special_offers.html', {})
