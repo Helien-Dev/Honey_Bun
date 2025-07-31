@@ -105,3 +105,20 @@ def product_details_view(request, slug):
     }
 
     return render(request, 'views/product_details.html', context)
+
+def profile_view(request):
+    """
+    Special offers view
+    """
+    
+    context = {
+        'title': 'Home',
+        'description': 'description',
+        'keywords': 'keywords',
+        'og_title': 'og:title',
+        'og_description': 'og:description',
+        'og_type': 'og:type',
+        'og_image': 'og:image',
+    }
+    
+    return render(request, 'views/profile.html', {})
