@@ -75,3 +75,9 @@ def special_offers_view(request):
     Special offers view
     """
     return render(request, 'views/special_offers.html', {})
+
+def product_details_view(request):
+    """
+    Product details view
+    """
+    return render(request, 'views/product_details.html', {})
