@@ -3,7 +3,8 @@ Views for the 'pages' app.
 This module contains view functions for rendering static pages in the application.
 """
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.contrib.auth import get_user_model
 from catalog.models import Product
 
@@ -68,7 +69,7 @@ def shop_view(request):
     """
     Shop view
     """
-    return render(request, 'views/shops.html', {})
+    return render(request, 'views/shop.html', {})
 
 def special_offers_view(request):
     """
@@ -76,8 +77,31 @@ def special_offers_view(request):
     """
     return render(request, 'views/special_offers.html', {})
 
-def product_details_view(request):
+def product_details_view(request, slug):
     """
-    Product details view
+    Product details view - Muestra los detalles de un producto específico
     """
-    return render(request, 'views/product_details.html', {})
+    # Obtener el producto específico por slug o devolver 404 si no existe
+    product = get_object_or_404(Product, slug=slug)
+
+    # Obtener productos relacionados/recomendados (excluyendo el actual)
+    recommended_products = Product.objects.exclude(slug=slug).order_by('?')[:4]
+
+    user = request.user
+
+    context = {
+        'title': f'{product.name} - Detalles del Producto',
+        'description': product.product_description[:160]
+        if product.product_description else 'Detalles del producto',
+        'keywords': f'{product.name}, producto, comprar',
+        'og_title': product.name,
+        'og_description': product.product_description[:160] if product.product_description else '',
+        'og_type': 'product',
+        'og_image': product.image_url,
+        'user': user,
+        'product': product,  # El producto principal
+        'recommended_products': recommended_products,  # Productos recomendados
+        'model_instance': recommended_products,  # Para el componente de recomendaciones
+    }
+
+    return render(request, 'views/product_details.html', context)

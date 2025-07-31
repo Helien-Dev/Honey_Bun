@@ -1,7 +1,85 @@
 {% extends 'base/base.html' %}
 {% load component_tags %}
 
-
 {% block content %}
-    
+<section class="flex flex-col items-center content-center justify-center">
+    <section class="flex flex-row bg-white rounded-2xl max-w-[1400px] w-full m-auto shadow-black/15 shadow-xl mb-[80px] gap-6">
+        <!-- Sección de imágenes del producto -->
+        <article class="max-w-[493px] py-5">
+            <div>
+                {% if product.image_url %}
+                    <img class="rounded-2xl max-w-[493px] max-h-[539px] object-cover" 
+                         src="{{ product.image_url }}" 
+                         alt="{{ product.alt|default:product.name }}">
+                    
+                    <!-- Thumbnails de imágenes -->
+                    <div class="flex flex-row gap-1 px-2 items-center content-center justify-center mt-2">
+                        {% comment %}
+                        Si tienes múltiples imágenes, puedes iterar sobre ellas aquí.
+                        Por ahora uso la misma imagen como placeholder.
+                        {% endcomment %}
+                        <img class="rounded-2xl max-w-[100px] max-h-[100px] w-full object-cover border-black border-[1px] border-solid cursor-pointer hover:opacity-80" 
+                             src="{{ product.image_url }}" 
+                             alt="{{ product.alt|default:product.name }}">
+                        <img class="rounded-2xl max-w-[100px] max-h-[100px] w-full object-cover border-black border-[1px] border-solid cursor-pointer hover:opacity-80" 
+                             src="{{ product.image_url }}" 
+                             alt="{{ product.alt|default:product.name }}">
+                        <img class="rounded-2xl max-w-[100px] max-h-[100px] w-full object-cover border-black border-[1px] border-solid cursor-pointer hover:opacity-80" 
+                             src="{{ product.image_url }}" 
+                             alt="{{ product.alt|default:product.name }}">
+                        <img class="rounded-2xl max-w-[100px] max-h-[100px] w-full object-cover border-black border-[1px] border-solid cursor-pointer hover:opacity-80" 
+                             src="{{ product.image_url }}" 
+                             alt="{{ product.alt|default:product.name }}">
+                    </div>
+                {% else %}
+                    <div class="rounded-2xl max-w-[493px] max-h-[539px] bg-gray-200 flex items-center justify-center">
+                        <p class="text-gray-500">Sin imagen disponible</p>
+                    </div>
+                {% endif %}
+            </div>
+        </article>
+
+        <!-- Sección de información del producto -->
+        <article class="flex flex-col gap-8 py-5 flex-1">
+            <div>
+                <p class="font-body-large-bold text-[#424242]">Producto:</p>
+                <h2 class="font-headline-large">{{ product.name }}</h2>
+            </div>
+
+            <!-- Mostrar precio original y con descuento si aplica -->
+            {% if product.on_offer %}
+                <div>
+                    <h3 class="font-display-large text-red-600">Precio: ${{ product.discounted_price }}</h3>
+                    <p class="font-body-large text-gray-500 line-through">Precio original: ${{ product.price }}</p>
+                    <p class="font-body-medium text-green-600">¡Ahorra ${{ product.savings_amount }}! ({{ product.offer }}% de descuento)</p>
+                </div>
+            {% else %}
+                <h3 class="font-display-large text-[#FCC862]">Precio: ${{ product.price }}</h3>
+            {% endif %}
+
+            {% if product.product_description %}
+                <div>
+                    <h4 class="font-body-large-bold text-[#424242]">Descripción</h4>
+                    <p class="font-body-large">{{ product.product_description }}</p>
+                </div>
+            {% endif %}
+
+            <!-- Botones de acción -->
+            <div class="py-7 grid grid-cols-2 gap-3">
+                {% component 'add_to_cart' product=product %}{% endcomponent %}
+                {% component 'buy_product' product=product %}{% endcomponent %}
+            </div>
+        </article>
+    </section>
+
+    <!-- Sección de productos recomendados -->
+    {% if recommended_products %}
+        {% component 'title' %}
+            {% fill 'title' %}Más Acerca de{% endfill %}
+        {% endcomponent %}
+            {{ product.name|capfirst }}
+        {% component 'recommendation_card' model_instance=recommended_products %}{% endcomponent %}
+        
+    {% endif %}
+</section>
 {% endblock content %}
