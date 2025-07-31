@@ -32,3 +32,22 @@ def home_view(request):
     }
 
     return render(request, 'views/home.html', context)
+
+def search_view(request):
+    """
+    Search view
+    """
+    context = {}
+
+    if request.method == 'GET':
+        searched = request.GET.get('searched', '')
+        if not  searched:
+            context['searched'] = searched
+        else:
+            products = Product.objects.filter(name__icontains=searched)
+            context = {
+                'searched': searched,
+                'products': products,
+            }
+
+    return render(request, 'components/controls/search.html', context)
