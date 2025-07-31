@@ -11,9 +11,8 @@
             {% for product in model_data %}
             {% if product.on_offer %}
             <article class="rounded-[14px] bg-white shadow-black/35 shadow-lg">
-                <img class="w-[325px] h-[215px] rounded-t-[14px] object-fill" 
-                     src="{{ product.image_url }}"
-                     alt="{{ product.alt|default:product.name }}" />
+                <img class="w-[325px] h-[215px] rounded-t-[14px] object-fill" src="{{ product.image_url }}"
+                    alt="{{ product.alt|default:product.name }}" />
                 <div class="my-[5px]">
                     <h2 class="font-semibold text-[22px] leading-[28px]">
                         {{ product.name }}
@@ -38,6 +37,39 @@
     </section>
     <div>
         <a class="p-[14px] bg-[var(--light-accent-color)] rounded-[14px] border-[1px] border-solid border-black font-[500] my-[5px]"
-           href="">Visitar tienda</a>
+            href="">Ver mas!</a>
     </div>
 </div>
+
+<style>
+    .container {
+        display: grid;
+        grid-template-columns: auto max-content auto;
+        align-items: center;
+        align-content: center;
+        justify-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px;
+    }
+
+    .line {
+        height: 6px;
+        background-color: #FCC862;
+    }
+
+    .line:first-child {
+        width: 50px;
+    }
+
+    .line:last-child {
+        width: 50px;
+    }
+
+    .text {
+        white-space: nowrap;
+        padding: 0 0px;
+    }
+</style>

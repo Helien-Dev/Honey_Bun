@@ -10,7 +10,7 @@ class SmallCard(component.Component):
         model_instance = Product.objects.filter(
             on_offer=True,  # Que esté marcado como en oferta
             offer__gte=10   # Con descuento >= 10%
-        )[:4]  # Máximo 4 productos para grid 2x2
+        )[:2]
         
         context = {"model_data": model_instance}
         return context

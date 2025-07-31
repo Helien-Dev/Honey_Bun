@@ -1,9 +1,10 @@
+import itertools
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
-import itertools
+from decimal import Decimal
 
 
 class Product(models.Model):
@@ -103,8 +104,8 @@ class Product(models.Model):
         """Calcula el precio con descuento"""
         if not self.on_offer or self.offer <= 0:
             return self.price
-            
-        discount = self.price * (self.offer / 100)
+
+        discount = self.price * (Decimal(self.offer) / Decimal('100'))
         return max(self.price - discount, 0)  # Asegurar que no sea negativo
 
     @property

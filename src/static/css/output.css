@@ -718,6 +718,10 @@ video {
   display: table-cell;
 }
 
+.grid {
+  display: grid;
+}
+
 .contents {
   display: contents;
 }
@@ -736,6 +740,10 @@ video {
 
 .h-\[213px\] {
   height: 213px;
+}
+
+.h-\[215px\] {
+  height: 215px;
 }
 
 .h-\[300px\] {
@@ -782,6 +790,10 @@ video {
   min-width: 325px;
 }
 
+.max-w-\[691px\] {
+  max-width: 691px;
+}
+
 .max-w-\[700px\] {
   max-width: 700px;
 }
@@ -815,6 +827,10 @@ video {
   resize: both;
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -833,6 +849,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -1079,12 +1099,12 @@ video {
   padding-top: 5rem;
 }
 
-.pt-7 {
-  padding-top: 1.75rem;
+.pt-\[120px\] {
+  padding-top: 120px;
 }
 
-.pt-\[57px\] {
-  padding-top: 57px;
+.pt-\[20px\] {
+  padding-top: 20px;
 }
 
 .pt-\[80px\] {
@@ -1093,10 +1113,6 @@ video {
 
 .pt-\[88px\] {
   padding-top: 88px;
-}
-
-.pt-\[20px\] {
-  padding-top: 20px;
 }
 
 .text-left {
@@ -1128,6 +1144,10 @@ video {
   font-size: 16px;
 }
 
+.text-\[20px\] {
+  font-size: 20px;
+}
+
 .text-\[22px\] {
   font-size: 22px;
 }
@@ -1140,10 +1160,6 @@ video {
   font-size: 57px;
 }
 
-.text-\[20px\] {
-  font-size: 20px;
-}
-
 .font-\[500\] {
   font-weight: 500;
 }
@@ -1154,6 +1170,10 @@ video {
 
 .font-light {
   font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
 }
 
 .font-semibold {
@@ -1194,10 +1214,6 @@ video {
   color: rgb(252 200 98 / var(--tw-text-opacity, 1));
 }
 
-.text-\[20\] {
-  color: 20;
-}
-
 .text-indigo-400 {
   --tw-text-opacity: 1;
   color: rgb(129 140 248 / var(--tw-text-opacity, 1));
@@ -1211,6 +1227,11 @@ video {
 .text-red-400 {
   --tw-text-opacity: 1;
   color: rgb(248 113 113 / var(--tw-text-opacity, 1));
+}
+
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity, 1));
 }
 
 .text-teal-400 {
@@ -1233,8 +1254,8 @@ video {
   color: rgb(161 161 170 / var(--tw-text-opacity, 1));
 }
 
-.text-\[80\] {
-  color: 80;
+.line-through {
+  text-decoration-line: line-through;
 }
 
 .shadow {

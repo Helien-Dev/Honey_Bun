@@ -1,5 +1,40 @@
+{% load component_tags %}
+
 <div class="container">
     <div class="line"></div>
-    <h2 class="titlte text-center font-semibold text-[32px] leading-[40px] py-[20px] px-1"></h2>
+    <h2 class="titlte text-center font-semibold text-[32px] leading-[40px] py-[20px] px-1">{% slot 'title' %}Title{% endslot %}</h2>
     <div class="line"></div>
 </div>
+
+<style> 
+.container {
+    display: grid;
+    grid-template-columns: auto max-content auto;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+}
+
+.line {
+    height: 6px;
+    background-color: #FCC862;
+}
+
+.line:first-child {
+    width: 50px;
+}
+
+.line:last-child {
+    width: 50px;
+}
+
+.text {
+    white-space: nowrap;
+    padding: 0 0px;
+}
+</style>
