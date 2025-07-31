@@ -51,3 +51,9 @@ def search_view(request):
             }
 
     return render(request, 'components/controls/search.html', context)
+
+def categories_view(request):
+    return render(request, 'views/categories.html', {})
+
+def offers_view(request):
+    return render(request, 'views/offers.html', {})
