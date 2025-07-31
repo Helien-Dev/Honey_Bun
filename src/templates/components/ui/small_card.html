@@ -1,5 +1,4 @@
 {% load component_tags %}
-
 <div class="flex flex-row justify-start gap-10 items-center pt-[88px]">
     <section class="max-w-[691px] text-center w-full">
         <div class="container">
@@ -10,11 +9,11 @@
         <div class="grid grid-cols-2 gap-[44px]">
             {% for product in model_data %}
             {% if product.on_offer %}
-            <article class="rounded-[14px] bg-white shadow-black/35 shadow-lg">
-                <img class="w-[325px] h-[215px] rounded-t-[14px] object-fill" src="{{ product.image_url }}"
+            <article class="rounded-[14px] bg-white shadow-black/35 shadow-lg w-[325px]">
+                <img class="w-full h-[215px] rounded-t-[14px] object-contain bg-gray-100" src="{{ product.image_url }}"
                     alt="{{ product.alt|default:product.name }}" />
-                <div class="my-[5px]">
-                    <h2 class="font-semibold text-[22px] leading-[28px]">
+                <div class="my-[5px] px-3">
+                    <h2 class="font-semibold text-[22px] leading-[28px] truncate" title="{{ product.name }}">
                         {{ product.name }}
                     </h2>
                     <div class="flex flex-row gap-2 text-center items-center justify-center content-center">
@@ -37,10 +36,9 @@
     </section>
     <div>
         <a class="p-[14px] bg-[var(--light-accent-color)] rounded-[14px] border-[1px] border-solid border-black font-[500] my-[5px]"
-            href="{% url 'special_offers'  %}">Ver mas!</a>
+            href="{% url 'special_offers' %}">Ver mas!</a>
     </div>
 </div>
-
 <style>
     .container {
         display: grid;
