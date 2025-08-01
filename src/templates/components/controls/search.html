@@ -2,33 +2,36 @@
 {% load component_tags %}
 
 {% block content %}
-<div>
-    <h2>Busqueda:</h2>
-
+<section>
     {% if searched %}
     <p>Buscaste por: {{ searched }}</p>
-
     {% for product in products %}
-    <article class="w-[325px] h-[380px] rounded-[14px] bg-white shadow-black/35 shadow-lg">
-        <img class="object-fill rounded-t-[14px] w-[325px] h-[213px]" src="{{ product.image_url }}"
-            alt="{{ product.alt }}" />
-        <div class="my-[5px]">
-            <h2 class="font-semibold text-[22px] leading-[28px]">
-                {{ product.name }}
-            </h2>
-            <h2 class="font-semibold text-[22px] leading-[28px]">
-                ${{ product.price }}
-            </h2>
-            <div class="py-7 flex flex-row justify-center content-center">
-                {% component 'add_to_cart' %}{% endcomponent %}
-            </div>
-        </div>
-    </article>
+    <article class="rounded-[14px] bg-white shadow-black/35 shadow-lg w-[325px] overflow-visible">
+                <img class="w-full h-[215px] rounded-t-[14px] object-fill bg-gray-100" src="{{ product.image_url }}"
+                    alt="{{ product.alt|default:product.name }}" />
+                <div class="my-[5px] px-3 pb-4">
+                    <h2 class="font-semibold text-[22px] leading-[28px] truncate" title="{{ product.name }}">
+                        {{ product.name }}
+                    </h2>
+                    <div class="flex flex-row gap-2 text-center items-center justify-center content-center">
+                        <h2 class="font-normal text-[22px] leading-[28px] line-through text-red-700">
+                            ${{ product.price }}
+                        </h2>
+                        <h2 class="font-semibold text-[22px] leading-[28px]">
+                            ${{ product.discounted_price|floatformat:2 }}
+                        </h2>
+                    </div>
+                    <h2 class="font-normal text-[22px] leading-[28px]">-{{ product.offer }}%</h2>
+                    <div class="py-4 flex justify-center items-center">
+                        {% component 'see_product' %}{% endcomponent %}
+                    </div>
+                </div>
+            </article>
     {% endfor %}
 
     {% else %}
     <p>No hay nada que buscar</p>
     {% endif %}
 
-</div>
+</section>
 {% endblock content %}

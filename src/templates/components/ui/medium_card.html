@@ -6,7 +6,7 @@
             <img src="{{ product.image_url }}" alt="{{ product.alt|default:product.name }}" />
             <div class="py-8 px-3 flex-1 flex flex-col justify-between">
                 <div>
-                    <h2 class="font-semibold text-[22px] leading-[10px] truncate" title="{{ product.name }}">
+                    <h2 class="font-semibold text-[22px] leading-[10px] truncate line-clamp-1" title="{{ product.name }}">
                         {{ product.name }}
                     </h2>
                     <h2 class="font-semibold text-[22px] leading-[28px]">

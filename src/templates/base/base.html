@@ -27,7 +27,7 @@
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{{ title }} - Honey Bun{% endblock %}</title>
 </head>
-<body class="bg-[var(--light-background-color)]">
+<body class="bg-[var(--light-background-color)]  grid min-h-dvh grid-rows-[auto_1fr_auto]">
     <header>
         {% component "navbar" %}{% endcomponent  %}
     </header>

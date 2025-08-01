@@ -9,7 +9,7 @@
       <div class="flex flex-row gap-[10px]">
         {% for product in model_data %}
         <article class="rounded-[14px] w-[325px] min-h-[300px] bg-white text-center shadow-black/35 shadow-lg">
-          <img class="rounded-t-[14px] w-full h-[300px] object-contain bg-gray-100" src="{{ product.image_url }}"
+          <img class="rounded-t-[14px] w-full h-[300px] object-fill bg-gray-100" src="{{ product.image_url }}"
             alt="{{ product.alt }}" />
           <div class="px-3">
             <h3 class="font-semibold text-[22px] truncate" title="{{ product.name }}">{{ product.name }}</h3>

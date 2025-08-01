@@ -36,6 +36,8 @@ RUN pip install --upgrade pip \
 WORKDIR /code/
 RUN npm install --omit=dev
 RUN npm install concurrently --save-dev
+RUN npm install -D @tailwindcss/line-clamp
+
 USER code
 COPY --chown=code:code requirements.txt package.json tailwind.config.js  /code/
 

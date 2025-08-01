@@ -1,7 +1,8 @@
 <nav>
     <ul class="flex flex-row items-center text-center justify-between w-full px-[120px] py-[10px]">
         <li>
-            <a class="font-semibold text-[14px]" href="{% url 'home'  %}">Honey Bun <span class="text-[#FCC862]">Shop</span></a>
+            <a class="font-semibold text-[14px]" href="{% url 'home'  %}">Honey Bun <span
+                    class="text-[#FCC862]">Shop</span></a>
         </li>
         <!-- Links -->
         <div class="flex flex-row gap-4 font-light">
@@ -12,7 +13,7 @@
         <!-- Search -->
         <div>
             <form method="GET" action="{% url 'search'  %}" class="relative w-[500px]">
-                <input type="search" name="searched"  placeholder="Buscar"
+                <input type="search" name="searched" placeholder="Buscar"
                     class="w-full py-[10px] pr-10 pl-[10px] text-[#424242] rounded-[14px] border border-solid border-[var(--light-accent-color)]" />
                 <button type="submit" class="absolute top-1/2 right-3 -translate-y-1/2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -24,7 +25,8 @@
             </form>
         </div>
         <!-- Profile -->
-        <div class="flex flex-row items-center">
+        <div class="flex flex-row items-center gap-6">
+            {% if user.is_authenticated %}
             <li>
                 <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <path fill="#424242"
@@ -36,6 +38,14 @@
             <li class="w-10 h-10 rounded-full overflow-hidden border border-[#ccc]">
                 <a href="{% url 'profile'  %}"><img class="w-full h-full object-cover" src="" alt="Perfil" /></a>
             </li>
+            {% else %}
+            <li class="overflow-hidden font-body-large-bold">
+                <a href="{% url 'account_login'  %}">iniciar Sesion</a>
+            </li>
+            <li class="overflow-hidden font-body-large-bold">
+                <a href="{% url 'account_signup'  %}">Crear Cuenta</a>
+            </li>
+            {% endif %}
         </div>
     </ul>
 </nav>

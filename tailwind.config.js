@@ -3,12 +3,14 @@ module.exports = {
   content: [
     './src/**/*.{html,js,py}',
     './templates/**/*.{html,js}',
-    './src/templates/components/*.html',
+    './src/templates/components/**/*.html',
     './widgets/**/*.{html,js}',
     './src/**/*.{html,js}',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
