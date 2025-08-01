@@ -5,10 +5,19 @@
 
 <section class="flex">
   <div class="max-w-[780px] relative">
+
+    {% if  user.is_authenticated %}
     <h1 class="font-display-large z-10">
       ¡Bienvenido {{ user }} a Honey Bun
       <span class="text-[#FCC862]">Shop</span>!
     </h1>
+    {% else %}
+    <h1 class="font-display-large z-10">
+      ¡Bienvenido a<br>Honey Bun 
+      <span class="text-[#FCC862]">Shop</span>!
+    </h1>
+    {% endif %}
+
     <p class="text-[20px] text-[#424242] pt-[20px]">
       ¡Prepárate para sumergirte en un mundo de dulces descuentos y un servicio
       excelente y disciplinado como nuestras queridas abejas!
