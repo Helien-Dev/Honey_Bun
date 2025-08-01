@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.contrib.auth import get_user_model
 from catalog.models import Product
+from django.utils.html import escape
 
 User = get_user_model()
 
@@ -41,18 +42,53 @@ def search_view(request):
     Search view
     """
     context = {}
-
+    
     if request.method == 'GET':
-        searched = request.GET.get('searched', '')
-        if not  searched:
+        searched = request.GET.get('searched', '').strip()
+        
+        if not searched:
             context['searched'] = searched
         else:
-            products = Product.objects.filter(name__icontains=searched)
-            context = {
-                'searched': searched,
-                'products': products,
-            }
-
+            if len(searched) < 2:
+                context = {
+                    'searched': escape(searched),
+                    'products': [],
+                    'error': 'El término de búsqueda debe tener al menos 2 caracteres.'
+                }
+            elif len(searched) > 100:
+                context = {
+                    'searched': escape(searched),
+                    'products': [],
+                    'error': 'El término de búsqueda es demasiado largo.'
+                }
+            else:
+                try:
+                    from django.db.models import Q
+                    
+                    query1 = Q(name__icontains=searched)
+                    
+                    query2 = Q()
+                    if len(searched) >= 4:
+                        for i in range(len(searched) - 2):
+                            substring = searched[i:i+3]
+                            query2 |= Q(name__icontains=substring)
+                    
+                    products = Product.objects.filter(
+                        query1 | query2
+                    ).select_related().distinct().order_by('name')
+                    
+                    context = {
+                        'searched': escape(searched),
+                        'products': products,
+                        'total_results': products.count()
+                    }
+                except Exception as e:
+                    context = {
+                        'searched': escape(searched),
+                        'products': [],
+                        'error': 'Error en la búsqueda. Inténtalo de nuevo.'
+                    }
+    
     return render(request, 'components/controls/search.html', context)
 
 def categories_view(request):
