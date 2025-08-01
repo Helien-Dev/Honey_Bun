@@ -1,35 +1,69 @@
-<div class="flex flex-row justify-center items-center">
-  <section class="pt-[88px]">
-    <div class="container_recomendation text-start">
-      <div class="line"></div>
-      <h2 class="text">Recomendaciones</h2>
-      <div class="line"></div>
-    </div>
-    <div class="flex flex-row items-center gap-6">
-      <div class="flex flex-row gap-[10px]">
-        {% for product in model_data %}
-        <article class="rounded-[14px] w-[325px] min-h-[300px] bg-white text-center shadow-black/35 shadow-lg">
-          <img class="rounded-t-[14px] w-full h-[300px] object-fill bg-gray-100" src="{{ product.image_url }}"
-            alt="{{ product.alt }}" />
-          <div class="px-3">
-            <h3 class="font-semibold text-[22px] truncate" title="{{ product.name }}">{{ product.name }}</h3>
-            <h3 class="font-semibold text-[22px]">${{ product.price }}</h3>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-      <button
-        class="p-[14px] bg-[var(--light-accent-color)] rounded-[14px] border-[1px] border-solid border-black font-[500]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 12 12">
-          <path fill="black"
-            d="M4.7 10c-.2 0-.4-.1-.5-.2c-.3-.3-.3-.8 0-1.1L6.9 6L4.2 3.3c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l3.3 3.2c.3.3.3.8 0 1.1L5.3 9.7q-.3.3-.6.3" />
-        </svg>
-      </button>
-    </div>
-  </section>
+<div class="flex flex-row justify-center items-center" data-component="recommendation-card">
+    <section class="pt-[88px]">
+        <div class="container_recomendation text-start">
+            <div class="line"></div>
+            <h2 class="text">Recomendaciones</h2>
+            <div class="line"></div>
+        </div>
+        <div class="flex flex-row items-center gap-6">
+            <div class="flex flex-row gap-[10px]" id="products-container">
+                {% for product in model_data %}
+                <article class="rounded-[14px] w-[325px] min-h-[300px] bg-white text-center shadow-black/35 shadow-lg">
+                    <img class="rounded-t-[14px] w-full h-[300px] object-fill bg-gray-100" 
+                         src="{{ product.image_url }}" alt="{{ product.alt }}" />
+                    <div class="px-3">
+                        <h3 class="font-semibold text-[22px] truncate" title="{{ product.name }}">{{ product.name }}</h3>
+                        <h3 class="font-semibold text-[22px]">${{ product.price }}</h3>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            
+            <!-- Controles de paginación -->
+            <div class="flex flex-col gap-2">
+                <!-- Enlace anterior -->
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" 
+                   class="recommendation-page-link p-[14px] bg-[var(--light-accent-color)] rounded-[14px] border-[1px] border-solid border-black font-[500] hover:bg-yellow-300 transition-colors inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 12 12" style="transform: rotate(180deg);">
+                        <path fill="black" d="M4.7 10c-.2 0-.4-.1-.5-.2c-.3-.3-.3-.8 0-1.1L6.9 6L4.2 3.3c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l3.3 3.2c.3.3.3.8 0 1.1L5.3 9.7q-.3.3-.6.3" />
+                    </svg>
+                </a>
+                {% else %}
+                <span class="p-[14px] bg-gray-300 rounded-[14px] border-[1px] border-solid border-gray-400 font-[500] cursor-not-allowed opacity-50 inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 12 12" style="transform: rotate(180deg);">
+                        <path fill="gray" d="M4.7 10c-.2 0-.4-.1-.5-.2c-.3-.3-.3-.8 0-1.1L6.9 6L4.2 3.3c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l3.3 3.2c.3.3.3.8 0 1.1L5.3 9.7q-.3.3-.6.3" />
+                    </svg>
+                </span>
+                {% endif %}
+                
+                <!-- Indicador de página -->
+                <div class="text-center text-sm font-medium bg-white rounded-[8px] px-3 py-2 border border-gray-300">
+                    {{ page_obj.number }} / {{ paginator.num_pages }}
+                </div>
+                
+                <!-- Enlace siguiente -->
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" 
+                   class="recommendation-page-link p-[14px] bg-[var(--light-accent-color)] rounded-[14px] border-[1px] border-solid border-black font-[500] hover:bg-yellow-300 transition-colors inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 12 12">
+                        <path fill="black" d="M4.7 10c-.2 0-.4-.1-.5-.2c-.3-.3-.3-.8 0-1.1L6.9 6L4.2 3.3c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l3.3 3.2c.3.3.3.8 0 1.1L5.3 9.7q-.3.3-.6.3" />
+                    </svg>
+                </a>
+                {% else %}
+                <span class="p-[14px] bg-gray-300 rounded-[14px] border-[1px] border-solid border-gray-400 font-[500] cursor-not-allowed opacity-50 inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 12 12">
+                        <path fill="gray" d="M4.7 10c-.2 0-.4-.1-.5-.2c-.3-.3-.3-.8 0-1.1L6.9 6L4.2 3.3c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l3.3 3.2c.3.3.3.8 0 1.1L5.3 9.7q-.3.3-.6.3" />
+                    </svg>
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </section>
 </div>
+
 <style>
-  .container_recomendation {
+.container_recomendation {
     display: grid;
     grid-template-columns: auto max-content auto;
     align-items: center;
@@ -40,23 +74,103 @@
     width: 100%;
     height: 100%;
     padding: 10px 10px;
-  }
-
-  .line {
+}
+.line {
     height: 6px;
     background-color: #FCC862;
-  }
-
-  .line:first-child {
+}
+.line:first-child {
     width: 50px;
-  }
-
-  .line:last-child {
+}
+.line:last-child {
     width: 50px;
-  }
-
-  .text {
+}
+.text {
     white-space: nowrap;
     padding: 0 0px;
-  }
+}
+
+/* Animación suave para el cambio de productos */
+#products-container {
+    transition: opacity 0.3s ease-in-out;
+}
+.loading {
+    opacity: 0.5;
+}
+
+#products-container.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px;
+    border: 3px solid #FCC862;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 </style>
+
+<script>
+// Deshabilitar scroll restoration del navegador
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+document.addEventListener('click', function(e) {
+    const target = e.target.closest('.recommendation-page-link');
+    if (target) {
+        e.preventDefault();
+        
+        const component = target.closest('[data-component="recommendation-card"]');
+        const container = component.querySelector('#products-container');
+        const paginationContainer = component.querySelector('.flex.flex-col.gap-2');
+        
+        // Guardar scroll ANTES de cualquier cambio
+        const currentScroll = window.pageYOffset;
+        
+        container.classList.add('loading');
+        
+        fetch(target.href, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newComponent = doc.querySelector('[data-component="recommendation-card"]');
+            
+            if (newComponent) {
+                const newProductsContainer = newComponent.querySelector('#products-container');
+                const newPaginationContainer = newComponent.querySelector('.flex.flex-col.gap-2');
+                
+                if (newProductsContainer && newPaginationContainer) {
+                    container.innerHTML = newProductsContainer.innerHTML;
+                    paginationContainer.innerHTML = newPaginationContainer.innerHTML;
+                }
+            }
+            
+            // Cambiar URL usando replaceState (no agrega historial)
+           window.history.pushState(null, '', target.href);
+            
+            // Forzar scroll a la posición original
+            window.scrollTo(0, currentScroll);
+            
+            container.classList.remove('loading');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            container.classList.remove('loading');
+            window.location.href = target.href;
+        });
+    }
+});
+</script>

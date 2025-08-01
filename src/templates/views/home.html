@@ -30,7 +30,8 @@
 
 <section>
   {% component 'small_card' model_instance=model_instance %}{% endcomponent %}
-  {% component 'recommendation_card' model_instance=model_instance %}{% endcomponent %}
+  <!-- La forma más simple, maneja automáticamente el parámetro page de la URL -->
+{% component 'recommendation_card' page=request.GET.page|default:1 %}{% endcomponent %}
 </section>
 
 <section class="text-center max-w-full pt-20">

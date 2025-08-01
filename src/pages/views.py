@@ -17,6 +17,7 @@ def home_view(request):
     """
     products = Product.objects.all().order_by('?')[:2]
     single_product = Product.objects.all().order_by('?')[:1]
+    page = request.GET.get('page', 1)
     user = request.user
 
     context = {
@@ -30,6 +31,7 @@ def home_view(request):
         'user': user,
         'products': products,
         'single_product': single_product,
+        'page': page,
     }
 
     return render(request, 'views/home.html', context)
